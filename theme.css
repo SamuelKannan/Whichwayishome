@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.4;
+    background-color: #f9f9f9;
+  }
+
+  
+  .main {
+    margin: 3rem;
+    text-align: center;
+  }
+
+  .main img {
+    border-radius: 30px;
+    max-width: 70%;
+    height: auto;
+  }
+
+  .defintion {
+    font-weight: bold;
+  }
+
+  .meditation {
+    font-family: 'Times New Roman', Arial, sans-serif;
+    font-weight: bold;
+  }
