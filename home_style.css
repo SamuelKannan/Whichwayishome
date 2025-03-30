@@ -11,7 +11,7 @@
   
   /* Section 1: Hero with background image */
   .hero {
-    background: url('home_pic.webp') no-repeat center center/cover;
+    background: url('Images/home_pic.webp') no-repeat center center/cover;
     height: 100vh;
     color: white;
     display: flex;
