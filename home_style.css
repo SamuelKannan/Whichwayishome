@@ -31,6 +31,7 @@
     background-color: #f9f9f9;
     padding: 2rem 1.5rem;
     text-align: center;
+    
   }
   
   .content h2 {
@@ -74,6 +75,18 @@
   
   .link-button:hover {
     background-color: #0056b3;
+  }
+
+  .theme {
+    background-color: #f9f9f9;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  
+  .theme h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #333;
   }
 
 
