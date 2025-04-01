@@ -17,9 +17,9 @@
   }
 
   .main img {
-    border-radius: 30px;
-    max-width: 70%;
+    max-width: 75%;
     height: auto;
+    border-radius: 20px;
   }
 
   .defintion {
