@@ -29,7 +29,7 @@
   /* Section 2: Content with light background */
   .content {
     background-color: #f9f9f9;
-    padding: 2rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     text-align: center;
     
   }
@@ -79,7 +79,7 @@
 
   .theme {
     background-color: #f9f9f9;
-    padding: 2rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     text-align: center;
   }
   
@@ -87,6 +87,12 @@
     font-size: 1.3rem;
     margin-bottom: 1rem;
     color: #333;
+  }
+
+  .grey-line {
+    border: none;
+    border-top: 1px solid grey;
+    margin: 10px 0;
   }
 
 
