@@ -130,6 +130,53 @@
     </div>
   </section>
 
+  <section class="contact-form-section">
+    <hr class="grey-line" />
+    <h2>Questions? Please feel free to contact us!</h2>
+    <div class="form-container">
+      <form id="contactForm" action="https://formspree.io/f/mbloojwq" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name">
+  
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="Your email">
+  
+        <label for="phone">Phone No</label>
+        <input type="text" id="phone" name="phone" placeholder="Your phone number (optional)">
+  
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required placeholder="Your message"></textarea>
+  
+        <button type="submit">Send</button>
+      </form>
+      <div class="thanks-message" id="thanksMessage">Thanks! Your message has been sent.</div>
+    </div>
+  </section>
+  
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const form = e.target;
+  
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          form.reset();
+          document.getElementById("thanksMessage").style.display = "block";
+        } else {
+          alert("Oops! There was a problem submitting your form.");
+        }
+      }).catch(error => {
+        alert("Oops! There was a problem submitting your form.");
+      });
+    });
+  </script>
+
 </body>
 
 </html>
