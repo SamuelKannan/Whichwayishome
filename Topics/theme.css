@@ -26,6 +26,10 @@ body {
   border-radius: 20px;
 }
 
+.para {
+  font-family: 'Metamorphous'
+}
+
 .defintion {
   font-weight: bold;
 }
@@ -34,6 +38,8 @@ body {
   font-family: 'Times New Roman', Arial, sans-serif;
   font-weight: bold;
 }
+
+
 
 footer {
   text-align: center;
