@@ -12,7 +12,7 @@
   /* Section 1: Hero with background image */
   .hero {
     background: url('home_pic.webp') no-repeat center center/cover;
-    height: 75vh;
+    height: 40vh;
     color: white;
     display: flex;
     justify-content: center;
