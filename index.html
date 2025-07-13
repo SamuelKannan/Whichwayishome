@@ -73,6 +73,10 @@
         <img src="Topics/Images/Fear.webp" alt="Fear">
         <span>Fear</span>
       </a>
+      <a href="Topics/Depression.html" class="grid-item">
+        <img src="Topics/Images/depression.png" alt="Depression">
+        <span>Depression</span>
+      </a>
       <a href="Topics/Peace.html" class="grid-item">
         <img src="Topics/Images/Peace.jpg" alt="Peace">
         <span>Peace</span>
@@ -129,7 +133,7 @@
         <img src="Topics/Images/Goodness.png" alt="Goodness">
         <span>Goodness</span>
       </a>
-      
+
       <a href="Topics/Sexuality.html" class="grid-item">
         <img src="Topics/Images/Sexuality.png" alt="Sexuality">
         <span>Sexuality</span>
@@ -152,27 +156,27 @@
       <form id="contactForm" action="https://formspree.io/f/mbloojwq" method="POST">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Your name">
-  
+
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required placeholder="Your email">
-  
+
         <label for="phone">Phone No</label>
         <input type="text" id="phone" name="phone" placeholder="Your phone number (optional)">
-  
+
         <label for="message">Message</label>
         <textarea id="message" name="message" required placeholder="Your message"></textarea>
-  
+
         <button type="submit">Send</button>
       </form>
       <div class="thanks-message" id="thanksMessage">Thanks! Your message has been sent.</div>
     </div>
   </section>
-  
+
   <script>
     document.getElementById("contactForm").addEventListener("submit", function (e) {
       e.preventDefault();
       const form = e.target;
-  
+
       fetch(form.action, {
         method: form.method,
         body: new FormData(form),
