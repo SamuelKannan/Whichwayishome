@@ -20,6 +20,93 @@
     rel="stylesheet">
 </head>
 
+<script>
+  (function () {
+    const carousel = document.querySelector('.carousel');
+    if (!carousel) return;
+
+    const track = carousel.querySelector('.carousel-track');
+    const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+    const prevBtn = carousel.querySelector('.prev');
+    const nextBtn = carousel.querySelector('.next');
+
+    let index = 0;
+    let slideWidth = carousel.querySelector('.carousel-viewport').clientWidth;
+
+    function setPosition() {
+      slideWidth = carousel.querySelector('.carousel-viewport').clientWidth;
+      track.style.transform = `translateX(${-index * slideWidth}px)`;
+    }
+
+    function pauseAllIframes() {
+      slides.forEach(slide => {
+        slide.querySelectorAll('iframe').forEach(iframe => {
+          const src = iframe.getAttribute('src');
+          iframe.setAttribute('src', src); // reset to stop playback
+        });
+      });
+    }
+
+    function goTo(i) {
+      index = Math.max(0, Math.min(i, slides.length - 1));
+      pauseAllIframes();
+      track.style.transform = `translateX(${-index * slideWidth}px)`;
+    }
+
+    prevBtn.addEventListener('click', () => goTo(index - 1));
+    nextBtn.addEventListener('click', () => goTo(index + 1));
+
+    // Keyboard support
+    carousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') goTo(index - 1);
+      if (e.key === 'ArrowRight') goTo(index + 1);
+    });
+    // Make carousel focusable for keyboard use
+    carousel.setAttribute('tabindex', '0');
+
+    // Swipe support
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    const threshold = 50;
+
+    const viewport = carousel.querySelector('.carousel-viewport');
+
+    viewport.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      currentX = startX;
+      track.style.transition = 'none';
+      viewport.setPointerCapture(e.pointerId);
+    });
+
+    viewport.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      currentX = e.clientX;
+      const dx = currentX - startX;
+      track.style.transform = `translateX(${(-index * slideWidth) + dx}px)`;
+    });
+
+    function endDrag(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      track.style.transition = 'transform 320ms ease-in-out';
+      const dx = currentX - startX;
+      if (dx > threshold) goTo(index - 1);
+      else if (dx < -threshold) goTo(index + 1);
+      else goTo(index); // snap back
+    }
+
+    viewport.addEventListener('pointerup', endDrag);
+    viewport.addEventListener('pointercancel', endDrag);
+    viewport.addEventListener('pointerleave', endDrag);
+
+    // Resize handling
+    window.addEventListener('resize', setPosition);
+    setPosition();
+  })();
+</script>
+
 <body>
 
   <section class="hero">
@@ -50,6 +137,74 @@
       <span class="verse">John 14:6</span>
     </p>
   </section>
+
+  <section id="testimonies" class="testimonies">
+    <hr class="grey-line" />
+    <h2>Personal Stories</h2>
+    <p class="testimonies-intro">
+      Real stories of how Jesus changed the lives of these people.
+    </p>
+
+    <div class="carousel" aria-label="Video testimonies carousel">
+      <button class="carousel-btn prev" aria-label="Previous videos" type="button">‹</button>
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <!-- Slide 1 (2 videos) -->
+          <div class="carousel-slide">
+            <article class="video-card">
+              <div class="video-wrapper">
+                <iframe title="Mary McGinn's Story" src="https://youtu.be/lFwu7ySyQhw" loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <p class="video-desc">
+                This is a story of how Jesus saved her from a satanic cult.
+              </p>
+            </article>
+
+            <article class="video-card">
+              <div class="video-wrapper">
+                <iframe title="Ethan's Story" src="https://youtu.be/lFwu7ySyQhw" loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <p class="video-desc">
+                This is a story of how Jesus saved from him from vain religious works.
+              </p>
+            </article>
+          </div>
+
+          <!-- Slide 2 (2 videos) -->
+          <div class="carousel-slide">
+            <article class="video-card">
+              <div class="video-wrapper">
+                <iframe title="Mercy's Story" src="https://youtu.be/dpStCedlLAI" loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <p class="video-desc">
+                Hope Restored — A journey from doubt to confidence and joy.
+              </p>
+            </article>
+            <!--
+            <article class="video-card">
+              <div class="video-wrapper">
+                <iframe title="From Fear to Faith" src="https://www.youtube.com/embed/l482T0yNkeo" loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <p class="video-desc">
+                From Fear to Faith — A testimony on finding courage and hope.
+              </p>
+            </article>
+          -->
+          </div>
+        </div>
+      </div>
+      <button class="carousel-btn next" aria-label="Next videos" type="button">›</button>
+    </div>
+  </section>
+
 
 
 
@@ -90,7 +245,7 @@
         <span>Freedom</span>
       </a>
       <a href="Topics/Christ_in_self.html" class="grid-item">
-        <img src="Topics/Images/Christ_in_self.jpg" alt="Christ in self">
+        <img src="Topics/Images/Christ_in_self_update.png" alt=" Christ in self">
         <span>Christ in self</span>
       </a>
       <a href="Topics/Self_control.html" class="grid-item">
