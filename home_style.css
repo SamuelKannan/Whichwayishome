@@ -1,98 +1,99 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-  }
-  
-  /* Section 1: Hero with background image */
-  .hero {
-    background: url('home_pic.webp') no-repeat center center/cover;
-    height: 40vh;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-  }
-  
-  .hero h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-  }
-  
-  /* Section 2: Content with light background */
-  .content {
-    background-color: #f9f9f9;
-    padding: 0.5rem 1.5rem;
-    text-align: center;
-    
-  }
-  
-  .content h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: #333;
-  }
-  
-  .content p {
-    font-size: 1rem;
-    color: #555;
-    max-width: 600px;
-    margin: 0 auto;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .highlight {
-    display: block;
-    margin-top: 0.75rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    font-family: 'Marcellus SC', 'Times New Roman', serif;
-    color: #222;
-  }
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
 
-  .verse {
-    font-size: 0.75rem;
-    font-family: Arial, sans-serif;
-    color: #555;
-  }
+/* Section 1: Hero with background image */
+.hero {
+  background: url('main_image.jpg') no-repeat center center/cover;
+  height: 40vh;
+  color: rgb(212, 210, 210);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
 
-  .link-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #48ac6d;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  .link-button:hover {
-    background-color: #0056b3;
-  }
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
 
-  .theme {
-    background-color: #f9f9f9;
-    padding: 0.5rem 1.5rem;
-    text-align: center;
-  }
+/* Section 2: Content with light background */
+.content {
+  background-color: #f9f9f9;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
 
-  .grey-line {
-    border: none;
-    border-top: 1px solid grey;
-    margin: 10px 0;
-  }
+}
 
-  /* Grid container */
+.content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.content p {
+  font-size: 1rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.highlight {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: 'Marcellus SC', 'Times New Roman', serif;
+  color: #222;
+}
+
+.verse {
+  font-size: 0.75rem;
+  font-family: Arial, sans-serif;
+  color: #555;
+}
+
+.link-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #48ac6d;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.link-button:hover {
+  background-color: #0056b3;
+}
+
+.theme {
+  background-color: #f9f9f9;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+}
+
+.grey-line {
+  border: none;
+  border-top: 1px solid grey;
+  margin: 10px 0;
+}
+
+/* Grid container */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  grid-template-columns: repeat(2, 1fr);
+  /* 2 columns */
   gap: 1.5rem;
 }
 
@@ -185,7 +186,8 @@ button:hover {
 /* Mobile Optimization */
 @media (max-width: 600px) {
   .grid-container {
-    grid-template-columns: repeat(2, 1fr); /* Still 2 columns */
+    grid-template-columns: repeat(2, 1fr);
+    /* Still 2 columns */
     gap: 1rem;
   }
 
@@ -200,23 +202,22 @@ button:hover {
 }
 
 
-  
-  /* Responsive Design */
-  @media (min-width: 768px) {
-    .hero h1 {
-      font-size: 4rem;
-    }
-  
-    .content h2 {
-      font-size: 2.2rem;
-    }
-  
-    .content p {
-      font-size: 1.1rem;
-    }
 
-    .highlight {
-        font-size: 1.5rem;
-      }
+/* Responsive Design */
+@media (min-width: 768px) {
+  .hero h1 {
+    font-size: 4rem;
   }
-  
+
+  .content h2 {
+    font-size: 2.2rem;
+  }
+
+  .content p {
+    font-size: 1.1rem;
+  }
+
+  .highlight {
+    font-size: 1.5rem;
+  }
+}
