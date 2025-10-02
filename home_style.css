@@ -186,6 +186,111 @@ button:hover {
   font-weight: bold;
 }
 
+/****************/
+
+/* ==== Personal Stories Section ==== */
+.stories {
+  background: #f9f9f9;
+  padding: 0.5rem 1.5rem 2rem;
+  text-align: center;
+}
+
+.stories h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* 2 columns */
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+/* hide everything after the first row (first 2 cards) when collapsed */
+.stories-grid.collapsed .story-card:nth-child(n + 3) {
+  display: none;
+}
+
+.story-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.story-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.story-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.story-desc {
+  padding: 0.75rem 1rem 1rem;
+  color: #555;
+  font-size: 0.975rem;
+  line-height: 1.5;
+}
+
+.stories-toggle {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 10px 16px;
+  background-color: #48ac6d;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.stories-toggle:hover {
+  background-color: #3a8a58;
+}
+
+/* Responsive tweak: stack to 1 column on small screens */
+@media (max-width: 640px) {
+  .stories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* show only first card when collapsed on mobile */
+  .stories-grid.collapsed .story-card:nth-child(n + 2) {
+    display: none;
+  }
+}
+
+/* Keep 16:9 ratio for YouTube iframes */
+.story-video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.story-video-wrapper iframe.story-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
 /* Responsive Design */
 @media (min-width: 768px) {
   .hero h1 {
