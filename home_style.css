@@ -19,7 +19,7 @@ body {
   align-items: flex-start;
   /* moves text up */
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .hero h1 {
