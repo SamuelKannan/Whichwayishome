@@ -39,6 +39,37 @@ body {
   font-weight: bold;
 }
 
+.video-card {
+  width: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: white;
+  font-family: Arial, sans-serif;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.thumbnail {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+
+}
+
+.video-title {
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+
 .contact-link {
   padding: 10px 20px;
   background-color: #4285F4;
@@ -50,7 +81,8 @@ body {
 }
 
 .contact-link:hover {
-  background-color: #3367D6;  /* Darker blue on hover */
+  background-color: #3367D6;
+  /* Darker blue on hover */
 }
 
 
