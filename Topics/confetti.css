@@ -11,7 +11,7 @@ body {
     margin: 0;
     padding: 0;
 
-    background-image: url("images/confetti.png");
+    background-image: url("Images/Confetti.png");
     background-size: cover;
     /* fills screen */
     background-repeat: repeat;
