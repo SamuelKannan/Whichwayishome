@@ -1,0 +1,137 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '@fontsource-variable/cormorant-garamond';
+import '@fontsource-variable/lora';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Absolute URL of the social-share image. */
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  /** Optional JSON-LD structured data. */
+  schema?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description,
+  ogImage,
+  ogType = 'website',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const resolvedOgImage = ogImage ?? new URL('/og-default.jpg', Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <meta name="theme-color" content="#faf6ee" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Which Way is Home" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={resolvedOgImage} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={resolvedOgImage} />
+
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6VG77CLTQ0"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-6VG77CLTQ0', { send_page_view: false });
+      document.addEventListener('astro:page-load', () => {
+        gtag('event', 'page_view', {
+          page_path: location.pathname,
+          page_title: document.title,
+        });
+      });
+    </script>
+
+    <ClientRouter />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a href="/" class="brand" aria-label="Which Way is Home — homepage">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 11.5 12 4l9 7.5" stroke="#8a6240" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5.5 10v9h13v-9" stroke="#8a6240" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 19v-5.5c0-.5.4-1 1-1h2c.6 0 1 .5 1 1V19" stroke="#c2a36b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="brand-text">Which Way is Home</span>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <a href="/#topics">Topics</a>
+          <a href="https://www.youtube.com/@WhichWayisHome" target="_blank" rel="noopener">Stories</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div class="container">
+        <a href="/" class="brand">Which Way is Home</a>
+        <nav aria-label="Footer">
+          <a href="/#topics">Topics</a>
+          <a href="https://www.youtube.com/@WhichWayisHome" target="_blank" rel="noopener">Personal Stories</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+        <p>Jesus said “I’m the way.” — John 14:6</p>
+      </div>
+    </footer>
+
+    <script>
+      function setupReveals() {
+        const els = document.querySelectorAll<HTMLElement>('.reveal:not(.in)');
+        if (!('IntersectionObserver' in window)) {
+          els.forEach((el) => el.classList.add('in'));
+          return;
+        }
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('in');
+                observer.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+        );
+        els.forEach((el) => observer.observe(el));
+      }
+      document.addEventListener('astro:page-load', setupReveals);
+    </script>
+  </body>
+</html>

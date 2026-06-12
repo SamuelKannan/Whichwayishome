@@ -1,0 +1,447 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { gridTopics } from '../data/topics';
+import roadDrawing from '../assets/road-drawing.jpeg';
+
+const description =
+  'Home — the place where you belong. Find the way home to God through Jesus Christ. Explore topics on hope, peace, depression, fear, forgiveness, and more.';
+
+const ogImage = new URL(roadDrawing.src, Astro.site).href;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Which Way is Home',
+  url: Astro.site?.href,
+  description,
+};
+---
+
+<BaseLayout
+  title="Which Way is Home? — Find the Way Home to God"
+  description={description}
+  ogImage={ogImage}
+  schema={schema}
+>
+  <main>
+    <!-- ============ Hero ============ -->
+    <section class="hero">
+      <div class="hero-art" aria-hidden="true">
+        <Image
+          src={roadDrawing}
+          alt=""
+          widths={[800, 1400, 2000]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="hero-inner">
+        <h1 class="reveal in">Which Way is Home?</h1>
+        <a href="#welcome" class="scroll-cue" aria-label="Scroll to introduction">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ Welcome ============ -->
+    <section id="welcome" class="welcome prose-width">
+      <p class="reveal">
+        <b>Home</b>, the place where you belong.
+        <br />
+        The place where we all desire to feel the most comfortable, loved, and protected. You
+        may have never experienced this warmth before but I guarantee you've wanted it. Its not
+        too late. God's arms are still open and within His embrace you will find home.
+      </p>
+      <p class="reveal">
+        The hole He has in His heart for you can never be replaced by another. The hole you have
+        in your heart is for him and can never be filled by eating, drinking, sex, money or
+        anything else in life that keeps us distracted from the reality that life itself is just
+        a moment. You are here and gone and your name and place will be forgotten. You are but
+        one grain of sand in the hourglass of time. Will you accept the way home before it's too
+        late?
+      </p>
+      <p class="highlight reveal">Jesus said "I'm the way."</p>
+      <p class="verse reveal">John 14:6</p>
+    </section>
+
+    <!-- ============ Personal Stories ============ -->
+    <section id="stories" class="stories reveal">
+      <hr class="divider" />
+      <a
+        href="https://www.youtube.com/@WhichWayisHome"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-primary"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15.2V8.8L15.5 12 10 15.2Z"/>
+        </svg>
+        Personal Stories
+      </a>
+    </section>
+
+    <!-- ============ Topics ============ -->
+    <section id="topics" class="topics">
+      <div class="container">
+        <hr class="divider" />
+        <h2 class="reveal">To take your first step towards Home, Explore these topics below!</h2>
+        <div class="topic-grid">
+          {
+            gridTopics.map((topic, i) => (
+              <a
+                href={`/topics/${topic.slug}/`}
+                class="topic-card reveal"
+                style={`--reveal-delay: ${(i % 4) * 0.07}s`}
+              >
+                <div class="topic-card-media">
+                  {topic.animated ? (
+                    <img src={topic.image.src} alt={topic.title} width={topic.image.width} height={topic.image.height} loading="lazy" />
+                  ) : (
+                    <Image
+                      src={topic.image}
+                      alt={topic.title}
+                      widths={[320, 560]}
+                      sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 300px"
+                      loading="lazy"
+                      transition:name={`topic-image-${topic.slug}`}
+                    />
+                  )}
+                </div>
+                <span class="topic-card-label" transition:name={`topic-title-${topic.slug}`}>
+                  {topic.title}
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Contact ============ -->
+    <section id="contact" class="contact">
+      <div class="prose-width">
+        <hr class="divider" />
+        <h2 class="reveal">Have a question?</h2>
+        <div class="form-card reveal">
+          <form id="contactForm" action="https://formspree.io/f/mbloojwq" method="POST">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="Your email" autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="phone">Phone No</label>
+              <input type="text" id="phone" name="phone" placeholder="Your phone number (optional)" autocomplete="tel" />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required rows="5" placeholder="Your message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+          </form>
+          <div class="thanks-message" id="thanksMessage">Thanks! Your message has been sent.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script>
+  function setupContactForm() {
+    const form = document.getElementById('contactForm') as HTMLFormElement | null;
+    if (!form || form.dataset.bound) return;
+    form.dataset.bound = 'true';
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      })
+        .then((response) => {
+          if (response.ok) {
+            form.reset();
+            const thanks = document.getElementById('thanksMessage');
+            if (thanks) thanks.style.display = 'block';
+          } else {
+            alert('Oops! There was a problem submitting your form.');
+          }
+        })
+        .catch(() => {
+          alert('Oops! There was a problem submitting your form.');
+        });
+    });
+  }
+  document.addEventListener('astro:page-load', setupContactForm);
+</script>
+
+<style>
+  /* ---------- Hero ---------- */
+
+  .hero {
+    position: relative;
+    min-height: clamp(420px, 72vh, 700px);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+
+  .hero-art {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 70%;
+    animation: kenburns 24s ease-in-out infinite alternate;
+  }
+
+  @keyframes kenburns {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
+  }
+
+  /* Blend the drawing into the parchment background */
+  .hero-art::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(250, 246, 238, 0.55) 0%, rgba(250, 246, 238, 0.05) 35%, rgba(250, 246, 238, 0.05) 65%, var(--bg) 100%);
+  }
+
+  .hero-inner {
+    position: relative;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 9vw, 5.8rem);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #4a3c33;
+    text-shadow: 0 2px 24px rgba(250, 246, 238, 0.9);
+  }
+
+  .scroll-cue {
+    display: inline-flex;
+    margin-top: 2.2rem;
+    padding: 0.6rem;
+    border-radius: 50%;
+    color: var(--accent-deep);
+    background: rgba(255, 253, 248, 0.75);
+    box-shadow: var(--shadow-sm);
+    animation: bob 2.4s ease-in-out infinite;
+  }
+
+  @keyframes bob {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(8px);
+    }
+  }
+
+  /* ---------- Welcome ---------- */
+
+  .welcome {
+    padding: 3.5rem 0 1.5rem;
+    text-align: center;
+    font-size: 1.125rem;
+    color: var(--ink-soft);
+  }
+
+  .welcome p {
+    margin-bottom: 1.4rem;
+  }
+
+  .welcome b {
+    color: var(--ink);
+  }
+
+  .welcome .highlight {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--accent-deep);
+    margin: 2rem 0 0.2rem;
+  }
+
+  .welcome .verse {
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- Stories ---------- */
+
+  .stories {
+    text-align: center;
+    padding: 1.5rem 1.25rem 2rem;
+  }
+
+  .stories .divider {
+    margin-bottom: 2.2rem;
+  }
+
+  /* ---------- Topics grid ---------- */
+
+  .topics {
+    padding: 2rem 0 1rem;
+    text-align: center;
+  }
+
+  .topics .divider {
+    margin-bottom: 2.5rem;
+  }
+
+  .topics h2 {
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    max-width: 38ch;
+    margin: 0 auto 2.6rem;
+  }
+
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 1.4rem;
+    text-align: left;
+  }
+
+  .topic-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.3s ease;
+  }
+
+  .topic-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .topic-card-media {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .topic-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .topic-card:hover .topic-card-media img {
+    transform: scale(1.06);
+  }
+
+  .topic-card-label {
+    display: block;
+    padding: 0.9rem 1.1rem;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-align: center;
+  }
+
+  /* ---------- Contact ---------- */
+
+  .contact {
+    padding: 3rem 0 1rem;
+    text-align: center;
+  }
+
+  .contact .divider {
+    margin-bottom: 2.2rem;
+  }
+
+  .contact h2 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 1.8rem;
+  }
+
+  .form-card {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: left;
+  }
+
+  .field {
+    margin-bottom: 1.1rem;
+  }
+
+  .field label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(194, 163, 107, 0.22);
+  }
+
+  .form-card .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .thanks-message {
+    display: none;
+    margin-top: 1.2rem;
+    padding: 0.9rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--sage-deep);
+    background: #eaf2ea;
+    border-radius: 10px;
+  }
+</style>

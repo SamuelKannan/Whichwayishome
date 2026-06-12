@@ -1,0 +1,377 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from './BaseLayout.astro';
+import { getTopic, getNeighbours } from '../data/topics';
+
+interface Props {
+  slug: string;
+  /** Hide the hero image for pages that never had one. */
+  noImage?: boolean;
+  /** Hide the standard questions call-to-action. */
+  noCta?: boolean;
+}
+
+const { slug, noImage = false, noCta = false } = Astro.props;
+const topic = getTopic(slug);
+const { prev, next } = getNeighbours(slug);
+
+const pageTitle = `${topic.title} | Which Way is Home`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(topic.image.src, Astro.site).href;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: topic.title,
+  description: topic.description,
+  image: ogImage,
+  mainEntityOfPage: canonical,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Which Way is Home',
+    url: Astro.site?.href,
+  },
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={topic.description}
+  ogImage={ogImage}
+  ogType="article"
+  schema={schema}
+>
+  <main>
+    <section class="topic-hero">
+      <p class="eyebrow reveal">A step towards Home</p>
+      <h1 class="reveal" style="--reveal-delay: 0.08s" transition:name={`topic-title-${topic.slug}`}>
+        {topic.title}
+      </h1>
+      {
+        !noImage && (
+          <figure class="topic-figure reveal" style="--reveal-delay: 0.16s">
+            {topic.animated ? (
+              <img src={topic.image.src} alt={topic.title} width={topic.image.width} height={topic.image.height} />
+            ) : (
+              <Image
+                src={topic.image}
+                alt={topic.title}
+                widths={[480, 760, 1100]}
+                sizes="(max-width: 820px) 92vw, 760px"
+                loading="eager"
+                transition:name={`topic-image-${topic.slug}`}
+              />
+            )}
+          </figure>
+        )
+      }
+    </section>
+
+    <article class="topic-prose prose-width">
+      <slot />
+    </article>
+
+    {
+      !noCta && (
+        <section class="topic-cta prose-width reveal">
+          <hr class="divider" />
+          <h3>Questions about the topic? Feel free to ask us!</h3>
+          <a href="/#contact" class="btn btn-primary">Questions?</a>
+        </section>
+      )
+    }
+
+    {
+      (prev || next) && (
+        <nav class="topic-pager prose-width" aria-label="More topics">
+          {prev ? (
+            <a href={`/topics/${prev.slug}/`} class="pager-card pager-prev">
+              <span class="pager-label">← Previous topic</span>
+              <span class="pager-title">{prev.title}</span>
+            </a>
+          ) : (
+            <span />
+          )}
+          {next && (
+            <a href={`/topics/${next.slug}/`} class="pager-card pager-next">
+              <span class="pager-label">Next topic →</span>
+              <span class="pager-title">{next.title}</span>
+            </a>
+          )}
+        </nav>
+      )
+    }
+
+    <p class="back-home">
+      <a href="/">← Back to Home</a>
+    </p>
+  </main>
+</BaseLayout>
+
+<style is:global>
+  .topic-hero {
+    text-align: center;
+    padding: 3.5rem 1.25rem 1rem;
+    background:
+      radial-gradient(ellipse 70% 100% at 50% 0%, var(--bg-deep) 0%, transparent 70%);
+  }
+
+  .topic-hero h1 {
+    font-size: clamp(2.6rem, 7vw, 4rem);
+    margin-top: 0.5rem;
+  }
+
+  .topic-figure {
+    margin: 2.2rem auto 0;
+    max-width: min(760px, 92%);
+  }
+
+  .topic-figure img {
+    margin-inline: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    max-height: 440px;
+    width: auto;
+    max-width: 100%;
+  }
+
+  /* ---------- Topic prose: verses become cards ---------- */
+
+  .topic-prose {
+    padding: 2.5rem 0 1rem;
+    font-size: 1.0625rem;
+  }
+
+  .topic-prose > p,
+  .topic-prose > div {
+    margin-bottom: 1.4rem;
+  }
+
+  .topic-prose .lede {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+  }
+
+  .topic-prose .lede b,
+  .topic-prose .lede strong {
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 1.25em;
+    line-height: 1.4;
+  }
+
+  .topic-prose ul {
+    list-style: none;
+    display: grid;
+    gap: 1.1rem;
+    margin: 1.6rem 0;
+  }
+
+  .topic-prose ul li {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.4rem;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .topic-prose ul li:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .topic-prose ul ul {
+    margin: 0.8rem 0 0;
+  }
+
+  .topic-prose ul ul li {
+    border-left-color: var(--sage);
+  }
+
+  .topic-prose b,
+  .topic-prose strong {
+    color: var(--accent-deep);
+  }
+
+  .topic-prose .meditation,
+  .topic-prose .interlude {
+    display: block;
+    margin-top: 0.5rem;
+    padding: 0.9rem 1.1rem;
+    background: var(--highlight);
+    border-radius: 10px;
+    font-style: italic;
+  }
+
+  .topic-prose .interlude {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .topic-prose h2,
+  .topic-prose h3 {
+    text-align: center;
+    margin: 2.2rem 0 1rem;
+    font-size: 1.9rem;
+  }
+
+  .topic-prose .bubble,
+  .topic-prose .bubble2 {
+    margin-inline: auto;
+    max-width: 540px;
+    padding: 1.3rem 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .topic-prose .bubble {
+    background: #e7eef9;
+    border: 1px solid #ccdcf2;
+    text-align: center;
+  }
+
+  .topic-prose .bubble2 {
+    background: #fbe9f1;
+    border: 1px solid #f2cfdf;
+  }
+
+  .topic-prose .warning-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-inline: auto;
+    max-width: 600px;
+    padding: 1.3rem 1.5rem;
+    background: #fdf3df;
+    border: 1px solid #ecd9ae;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .topic-prose .warning-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+
+  .topic-prose .warning-text {
+    flex: 1;
+  }
+
+  .topic-prose .video-card {
+    max-width: 360px;
+    margin: 2rem auto 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .topic-prose .video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .topic-prose .video-card a {
+    text-decoration: none;
+  }
+
+  .topic-prose .video-card .thumbnail {
+    width: 100%;
+  }
+
+  .topic-prose .video-card .video-title {
+    padding: 0.9rem 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .topic-prose .inline-figure {
+    margin: 1rem auto 0;
+  }
+
+  .topic-prose .inline-figure img {
+    margin-inline: auto;
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ---------- CTA + pager ---------- */
+
+  .topic-cta {
+    text-align: center;
+    padding: 2.5rem 0 1rem;
+  }
+
+  .topic-cta h3 {
+    margin: 2rem 0 1.4rem;
+    font-size: 1.6rem;
+  }
+
+  .topic-pager {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 2.5rem 0 0;
+  }
+
+  .pager-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 1rem 1.3rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.25s ease;
+  }
+
+  .pager-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .pager-next {
+    text-align: right;
+  }
+
+  .pager-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .pager-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .back-home {
+    text-align: center;
+    padding: 2.5rem 0 0.5rem;
+  }
+
+  .back-home a {
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  @media (max-width: 560px) {
+    .topic-pager {
+      grid-template-columns: 1fr;
+    }
+
+    .pager-next {
+      text-align: left;
+    }
+  }
+</style>

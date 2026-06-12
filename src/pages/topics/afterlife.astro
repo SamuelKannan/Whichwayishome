@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import TopicLayout from '../../layouts/TopicLayout.astro';
+import heaven from '../../assets/topics/heaven.png';
+import hell from '../../assets/topics/hell.jpg';
+---
+
+<TopicLayout slug="afterlife">
+  <p class="lede"><b>Your eternal destiny after death</b></p>
+  <ul>
+    <li>
+      "..death is the destiny of everyone; the living should take this to heart." - Ecclesiastes 7:2
+    </li>
+    <li>
+      "Remember your Creator in the days of your youth, before the days of trouble come and the years approach
+      when you will say, “I find no pleasure in them”— Remember him—before the silver cord is severed, and the
+      golden bowl is broken; before the pitcher is shattered at the spring, and the wheel broken at the well,
+      and the dust returns to the ground it came from, and the spirit returns to God who gave it.""
+      Ecclesiastes 12:1,6-7
+    </li>
+    <li>
+      "Multitudes who sleep in the dust of the earth will awake: some to everlasting life, others to shame and
+      everlasting contempt." - Daniel 12:2
+    </li>
+  </ul>
+
+  <h2>Which do you prefer?</h2>
+
+  <div class="destiny-grid">
+    <a href="/topics/heaven/" class="destiny-card">
+      <Image src={heaven} alt="Heaven" widths={[320, 560]} sizes="(max-width: 640px) 92vw, 320px" />
+      <span>Heaven</span>
+    </a>
+    <a href="/topics/hell/" class="destiny-card">
+      <Image src={hell} alt="Hell" widths={[320, 560]} sizes="(max-width: 640px) 92vw, 320px" />
+      <span>Hell</span>
+    </a>
+  </div>
+</TopicLayout>
+
+<style>
+  .destiny-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem;
+    margin: 1rem 0 2rem;
+  }
+
+  .destiny-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .destiny-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .destiny-card img {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .destiny-card span {
+    padding: 0.85rem;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  @media (max-width: 520px) {
+    .destiny-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
