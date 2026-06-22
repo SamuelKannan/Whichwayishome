@@ -60,6 +60,12 @@ const resolvedOgImage = ogImage ?? new URL('/og-default.jpg', Astro.site).href;
 
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
 
+    <!-- Vercel Speed Insights -->
+    <script is:inline>
+      window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6VG77CLTQ0"></script>
     <script is:inline>
