@@ -169,18 +169,33 @@ const schema = {
   }
 
   .topic-prose ul li {
+    position: relative;
     background: var(--surface);
     border: 1px solid var(--line);
     border-left: 3px solid var(--gold);
     border-radius: var(--radius);
     padding: 1.25rem 1.4rem;
     box-shadow: var(--shadow-sm);
-    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    transition: transform 0.25s ease;
+  }
+
+  .topic-prose ul li::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
   }
 
   .topic-prose ul li:hover {
-    box-shadow: var(--shadow-md);
     transform: translateY(-2px);
+  }
+
+  .topic-prose ul li:hover::after {
+    opacity: 1;
   }
 
   .topic-prose ul ul {
@@ -261,19 +276,33 @@ const schema = {
   }
 
   .topic-prose .video-card {
+    position: relative;
     max-width: 360px;
     margin: 2rem auto 0;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    overflow: hidden;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.25s ease;
+  }
+
+  .topic-prose .video-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
   }
 
   .topic-prose .video-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
+  }
+
+  .topic-prose .video-card:hover::after {
+    opacity: 1;
   }
 
   .topic-prose .video-card a {
@@ -282,6 +311,8 @@ const schema = {
 
   .topic-prose .video-card .thumbnail {
     width: 100%;
+    display: block;
+    border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
   }
 
   .topic-prose .video-card .video-title {
@@ -320,6 +351,7 @@ const schema = {
   }
 
   .pager-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
@@ -329,12 +361,26 @@ const schema = {
     border-radius: var(--radius);
     text-decoration: none;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.2s ease, box-shadow 0.25s ease;
+    transition: transform 0.2s ease;
+  }
+
+  .pager-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
   }
 
   .pager-card:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+  }
+
+  .pager-card:hover::after {
+    opacity: 1;
   }
 
   .pager-next {

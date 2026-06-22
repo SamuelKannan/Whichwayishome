@@ -205,6 +205,9 @@ const schema = {
     object-fit: cover;
     object-position: center 70%;
     animation: kenburns 24s ease-in-out infinite alternate;
+    /* Keep the continuous scale on the GPU compositor. */
+    will-change: transform;
+    backface-visibility: hidden;
   }
 
   @keyframes kenburns {
@@ -328,25 +331,43 @@ const schema = {
   }
 
   .topic-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    overflow: hidden;
     text-decoration: none;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  /* Deeper hover shadow as an opacity-faded pseudo (no box-shadow repaint).
+     The card no longer clips overflow so this shadow isn't cut off — the
+     media element below clips the image zoom instead. */
+  .topic-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
   }
 
   .topic-card:hover {
     transform: translateY(-6px);
-    box-shadow: var(--shadow-md);
+  }
+
+  .topic-card:hover::after {
+    opacity: 1;
   }
 
   .topic-card-media {
     aspect-ratio: 4 / 3;
     overflow: hidden;
+    border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
   }
 
   .topic-card-media img {
