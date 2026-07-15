@@ -1,15 +1,16 @@
 ---
-import { ClientRouter } from 'astro:transitions';
-import '@fontsource-variable/cormorant-garamond';
-import '@fontsource-variable/lora';
-import '../styles/global.css';
+import { ClientRouter } from "astro:transitions";
+import Analytics from "@vercel/analytics/astro";
+import "@fontsource-variable/cormorant-garamond/index.css";
+import "@fontsource-variable/lora/index.css";
+import "../styles/global.css";
 
 interface Props {
   title: string;
   description: string;
   /** Absolute URL of the social-share image. */
   ogImage?: string;
-  ogType?: 'website' | 'article';
+  ogType?: "website" | "article";
   noindex?: boolean;
   /** Optional JSON-LD structured data. */
   schema?: Record<string, unknown>;
@@ -19,13 +20,13 @@ const {
   title,
   description,
   ogImage,
-  ogType = 'website',
+  ogType = "website",
   noindex = false,
   schema,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const resolvedOgImage = ogImage ?? new URL('/og-default.jpg', Astro.site).href;
+const resolvedOgImage = ogImage ?? new URL("/og-default.jpg", Astro.site).href;
 ---
 
 <!doctype html>
@@ -58,17 +59,24 @@ const resolvedOgImage = ogImage ?? new URL('/og-default.jpg', Astro.site).href;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={resolvedOgImage} />
 
-    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+    {
+      schema && (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      )
+    }
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6VG77CLTQ0"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6VG77CLTQ0"
+    ></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-6VG77CLTQ0', { send_page_view: false });
-      document.addEventListener('astro:page-load', () => {
-        gtag('event', 'page_view', {
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-6VG77CLTQ0", { send_page_view: false });
+      document.addEventListener("astro:page-load", () => {
+        gtag("event", "page_view", {
           page_path: location.pathname,
           page_title: document.title,
         });
@@ -82,29 +90,58 @@ const resolvedOgImage = ogImage ?? new URL('/og-default.jpg', Astro.site).href;
     <header class="site-header">
       <div class="container site-header-inner">
         <a href="/" class="brand" aria-label="Which Way is Home — homepage">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M3 11.5 12 4l9 7.5" stroke="#8a6240" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M5.5 10v9h13v-9" stroke="#8a6240" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M10 19v-5.5c0-.5.4-1 1-1h2c.6 0 1 .5 1 1V19" stroke="#c2a36b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            width="26"
+            height="26"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true">
+            <path
+              d="M3 11.5 12 4l9 7.5"
+              stroke="#8a6240"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              d="M5.5 10v9h13v-9"
+              stroke="#8a6240"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              d="M10 19v-5.5c0-.5.4-1 1-1h2c.6 0 1 .5 1 1V19"
+              stroke="#c2a36b"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
           </svg>
           <span class="brand-text">Which Way is Home</span>
         </a>
         <nav class="site-nav" aria-label="Main">
           <a href="/#topics">Topics</a>
-          <a href="https://www.youtube.com/@WhichWayisHome" target="_blank" rel="noopener">Stories</a>
+          <a
+            href="https://www.youtube.com/@WhichWayisHome"
+            target="_blank"
+            rel="noopener">Stories</a
+          >
           <a href="/#contact">Contact</a>
         </nav>
       </div>
     </header>
 
     <slot />
+    <Analytics />
 
     <footer class="site-footer">
       <div class="container">
         <a href="/" class="brand">Which Way is Home</a>
         <nav aria-label="Footer">
           <a href="/#topics">Topics</a>
-          <a href="https://www.youtube.com/@WhichWayisHome" target="_blank" rel="noopener">Personal Stories</a>
+          <a
+            href="https://www.youtube.com/@WhichWayisHome"
+            target="_blank"
+            rel="noopener">Personal Stories</a
+          >
           <a href="/#contact">Contact</a>
         </nav>
         <p>Jesus said “I’m the way.” — John 14:6</p>
@@ -113,25 +150,25 @@ const resolvedOgImage = ogImage ?? new URL('/og-default.jpg', Astro.site).href;
 
     <script>
       function setupReveals() {
-        const els = document.querySelectorAll<HTMLElement>('.reveal:not(.in)');
-        if (!('IntersectionObserver' in window)) {
-          els.forEach((el) => el.classList.add('in'));
+        const els = document.querySelectorAll<HTMLElement>(".reveal:not(.in)");
+        if (!("IntersectionObserver" in window)) {
+          els.forEach((el) => el.classList.add("in"));
           return;
         }
         const observer = new IntersectionObserver(
           (entries) => {
             for (const entry of entries) {
               if (entry.isIntersecting) {
-                entry.target.classList.add('in');
+                entry.target.classList.add("in");
                 observer.unobserve(entry.target);
               }
             }
           },
-          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
         );
         els.forEach((el) => observer.observe(el));
       }
-      document.addEventListener('astro:page-load', setupReveals);
+      document.addEventListener("astro:page-load", setupReveals);
     </script>
   </body>
 </html>
