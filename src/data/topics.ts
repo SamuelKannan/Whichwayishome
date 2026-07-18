@@ -1,7 +1,7 @@
 import type { ImageMetadata } from 'astro';
 
 import god from '../assets/topics/god.gif';
-import gospel from '../assets/topics/gospel.png';
+import gospel from '../assets/topics/gospel-alt.jpg';
 import afterlife from '../assets/topics/afterlife.png';
 import worth from '../assets/topics/worth.png';
 import beauty from '../assets/topics/beauty.png';
@@ -25,7 +25,7 @@ import goodness from '../assets/topics/goodness.png';
 import sexuality from '../assets/topics/sexuality.png';
 import humility from '../assets/topics/humility.png';
 import kindness from '../assets/topics/kindness.png';
-import heaven from '../assets/topics/heaven.png';
+import heaven from '../assets/topics/heaven-alt.jpg';
 import hell from '../assets/topics/Hell.webp';
 import patience from '../assets/topics/patience.png';
 
