@@ -26,7 +26,7 @@ import sexuality from '../assets/topics/sexuality.png';
 import humility from '../assets/topics/humility.png';
 import kindness from '../assets/topics/kindness.png';
 import heaven from '../assets/topics/heaven.png';
-import hell from '../assets/topics/hell.jpg';
+import hell from '../assets/topics/Hell.webp';
 import patience from '../assets/topics/patience.png';
 
 export interface Topic {
@@ -230,7 +230,7 @@ export const extraTopics: Topic[] = [
   {
     slug: 'hell',
     title: 'Hell',
-    description: 'What does the Bible say about hell? Info coming soon.',
+    description: 'What does the Bible say about hell? The eternal agony of damnation — and the escape God offers.',
     image: hell,
   },
   {
