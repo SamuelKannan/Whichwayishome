@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import TopicLayout from '../../layouts/TopicLayout.astro';
+import hellPied from '../../assets/topics/Hell_pied.webp';
 ---
 
 <TopicLayout slug="hell">
@@ -40,23 +42,35 @@ import TopicLayout from '../../layouts/TopicLayout.astro';
 
   <ul>
     <li class="hell-bubble">
-    <p>
-      <b>2 Thessalonians 2:10</b><br />
-      &ldquo;and all the ways that wickedness deceives those who are perishing. They perish because they refused
-      to love the truth and so be saved.&rdquo;
-    </p>
+      <p>
+        <b>2 Thessalonians 2:10</b><br />
+        &ldquo;and all the ways that wickedness deceives those who are perishing. They perish because they refused
+        to love the truth and so be saved.&rdquo;
+      </p>
 
-    <p>If you refuse to love the truth you qualify for hell. Jesus is the Truth(John 14:6)</p>
-    <p>
-      Wickedness is deceitful.<br />
-      That lust, that greed, that pride, that temporary pleasure, it's deceiving you; like the Pied Piper with
-      his merry tune, it's luring you to destruction.
-    </p>
+      <p>If you refuse to love the truth you qualify for hell. Jesus is the Truth(John 14:6)</p>
+      <p>
+        Wickedness is deceitful.<br />
+        That lust, that greed, that pride, that temporary pleasure, it's deceiving you; like the Pied Piper with
+        his merry tune, it's luring you to destruction.
+      </p>
+      <figure class="hell-pied">
+        <Image
+          src={hellPied}
+          alt="The Pied Piper leading a crowd down a dark path"
+          widths={[320, 520]}
+          sizes="(max-width: 640px) 82vw, 360px"
+        />
+      </figure>
+    </li>
+  </ul>
 
-    <p class="interlude">
-      "The safest road to Hell is the graduation one - the gentle slope, soft underfoot, without sudden
-      turnings, without milestones, without sign posts." C.S. Lewis
-    </p>
+  <ul>
+    <li class="hell-bubble">
+      <p class="interlude">
+        "The safest road to Hell is the graduation one - the gentle slope, soft underfoot, without sudden
+        turnings, without milestones, without sign posts." C.S. Lewis
+      </p>
     </li>
   </ul>
 
@@ -175,6 +189,19 @@ import TopicLayout from '../../layouts/TopicLayout.astro';
 
   .hell-bubble > p + p {
     margin-top: 1rem;
+  }
+
+  .hell-pied {
+    max-width: 360px;
+    margin: 1.4rem auto 0;
+  }
+
+  .hell-pied img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
   }
 
   .scripture-credit {
