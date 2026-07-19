@@ -26,7 +26,7 @@ import sexuality from '../assets/topics/sexuality.png';
 import humility from '../assets/topics/humility.png';
 import kindness from '../assets/topics/kindness.png';
 import heaven from '../assets/topics/heaven.png';
-import hell from '../assets/topics/Hell.webp';
+import hell from '../assets/topics/hell.jpg';
 import patience from '../assets/topics/patience.png';
 
 export interface Topic {
