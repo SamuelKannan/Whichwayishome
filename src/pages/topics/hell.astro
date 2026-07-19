@@ -3,8 +3,8 @@ import TopicLayout from '../../layouts/TopicLayout.astro';
 ---
 
 <TopicLayout slug="hell">
-  <p class="lede"><b>"A picture is worth a thousand words"</b></p>
-  <p>
+  <p class="lede hell-opening-title"><b>"A picture is worth a thousand words"</b></p>
+  <p class="hell-opening-copy">
     And yet the one above still manages to fall short of the gravity of the eternal agony of damnation.
   </p>
 
@@ -165,6 +165,14 @@ import TopicLayout from '../../layouts/TopicLayout.astro';
 </TopicLayout>
 
 <style>
+  .hell-opening-title {
+    margin-top: -1.25rem;
+  }
+
+  .hell-opening-copy {
+    margin-bottom: 3.25rem;
+  }
+
   .hell-bubble > p + p {
     margin-top: 1rem;
   }
