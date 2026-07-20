@@ -98,20 +98,17 @@ const schema = {
                 style={`--reveal-delay: ${(i % 4) * 0.07}s`}
               >
                 <div class="topic-card-media">
-                  {topic.animated ? (
-                    <img src={topic.image.src} alt={topic.title} width={topic.image.width} height={topic.image.height} loading="lazy" />
-                  ) : (
-                    <Image
-                      src={topic.image}
-                      alt={topic.title}
-                      widths={[320, 560]}
-                      sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 300px"
-                      loading="lazy"
-                      transition:name={`topic-image-${topic.slug}`}
-                    />
-                  )}
+                  <Image
+                    src={topic.image}
+                    alt={topic.title}
+                    width={560}
+                    widths={[320, 560]}
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 300px"
+                    loading="lazy"
+                    quality={78}
+                  />
                 </div>
-                <span class="topic-card-label" transition:name={`topic-title-${topic.slug}`}>
+                <span class="topic-card-label">
                   {topic.title}
                 </span>
               </a>
@@ -154,6 +151,20 @@ const schema = {
 </BaseLayout>
 
 <script>
+  function setupHeroAnimation() {
+    const hero = document.querySelector<HTMLElement>('.hero');
+    if (!hero) return;
+    if (!('IntersectionObserver' in window)) {
+      hero.classList.add('is-visible');
+      return;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      hero.classList.toggle('is-visible', entry.isIntersecting);
+    });
+    observer.observe(hero);
+  }
+
   function setupContactForm() {
     const form = document.getElementById('contactForm') as HTMLFormElement | null;
     if (!form || form.dataset.bound) return;
@@ -180,7 +191,8 @@ const schema = {
         });
     });
   }
-  document.addEventListener('astro:page-load', setupContactForm);
+  setupHeroAnimation();
+  setupContactForm();
 </script>
 
 <style>
@@ -205,9 +217,12 @@ const schema = {
     object-fit: cover;
     object-position: center 70%;
     animation: kenburns 24s ease-in-out infinite alternate;
-    /* Keep the continuous scale on the GPU compositor. */
-    will-change: transform;
+    animation-play-state: paused;
     backface-visibility: hidden;
+  }
+
+  .hero.is-visible .hero-art img {
+    animation-play-state: running;
   }
 
   @keyframes kenburns {
@@ -259,6 +274,13 @@ const schema = {
     }
     50% {
       transform: translateY(8px);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-art img,
+    .scroll-cue {
+      animation: none;
     }
   }
 

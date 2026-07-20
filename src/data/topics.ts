@@ -1,6 +1,7 @@
 import type { ImageMetadata } from 'astro';
 
-import god from '../assets/topics/god.gif';
+import god from '../assets/topics/god.webp';
+import godVideo from '../assets/topics/god.mp4';
 import gospel from '../assets/topics/gospel-alt.jpg';
 import afterlife from '../assets/topics/afterlife.png';
 import worth from '../assets/topics/worth.png';
@@ -34,8 +35,8 @@ export interface Topic {
   title: string;
   description: string;
   image: ImageMetadata;
-  /** Animated images (gif) must skip optimization to keep their animation. */
-  animated?: boolean;
+  /** Optional lightweight animated hero; the static image remains the card/poster image. */
+  video?: string;
 }
 
 /** Topics shown on the homepage grid, in display order. */
@@ -46,7 +47,7 @@ export const gridTopics: Topic[] = [
     description:
       'Who is God? Explore what the Bible says about the creator and ruler of the universe — the Alpha and Omega, Spirit, Light, Love, and the sole supreme Being.',
     image: god,
-    animated: true,
+    video: godVideo,
   },
   {
     slug: 'gospel',

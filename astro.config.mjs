@@ -6,6 +6,6 @@ export default defineConfig({
   site: 'https://www.whichwayishome.com',
   integrations: [sitemap()],
   prefetch: {
-    prefetchAll: true,
+    prefetchAll: false,
   },
 });
