@@ -1,0 +1,41 @@
+{
+  "redirects": [
+    { "source": "/Topics/Afterlife.html", "destination": "/topics/afterlife/", "permanent": true },
+    { "source": "/Topics/Beauty.html", "destination": "/topics/beauty/", "permanent": true },
+    { "source": "/Topics/Christ_in_self.html", "destination": "/topics/christ-in-self/", "permanent": true },
+    { "source": "/Topics/Depression.html", "destination": "/topics/depression/", "permanent": true },
+    { "source": "/Topics/Faith.html", "destination": "/topics/faith/", "permanent": true },
+    { "source": "/Topics/Fear.html", "destination": "/topics/fear/", "permanent": true },
+    { "source": "/Topics/Forgiveness.html", "destination": "/topics/forgiveness/", "permanent": true },
+    { "source": "/Topics/Freedom.html", "destination": "/topics/freedom/", "permanent": true },
+    { "source": "/Topics/Gentleness.html", "destination": "/topics/gentleness/", "permanent": true },
+    { "source": "/Topics/God.html", "destination": "/topics/god/", "permanent": true },
+    { "source": "/Topics/Goodness.html", "destination": "/topics/goodness/", "permanent": true },
+    { "source": "/Topics/Gospel.html", "destination": "/topics/gospel/", "permanent": true },
+    { "source": "/Topics/Heaven.html", "destination": "/topics/heaven/", "permanent": true },
+    { "source": "/Topics/Heaven_part2.html", "destination": "/topics/invitation/", "permanent": true },
+    { "source": "/Topics/Hell.html", "destination": "/topics/hell/", "permanent": true },
+    { "source": "/Topics/Hope.html", "destination": "/topics/hope/", "permanent": true },
+    { "source": "/Topics/Humility.html", "destination": "/topics/humility/", "permanent": true },
+    { "source": "/Topics/Joy.html", "destination": "/topics/joy/", "permanent": true },
+    { "source": "/Topics/Kindness.html", "destination": "/topics/kindness/", "permanent": true },
+    { "source": "/Topics/Light.html", "destination": "/topics/light/", "permanent": true },
+    { "source": "/Topics/Love.html", "destination": "/topics/love/", "permanent": true },
+    { "source": "/Topics/Patience.html", "destination": "/", "permanent": true },
+    { "source": "/Topics/Peace.html", "destination": "/topics/peace/", "permanent": true },
+    { "source": "/Topics/Repentance.html", "destination": "/topics/repentance/", "permanent": true },
+    { "source": "/Topics/Self.html", "destination": "/topics/self/", "permanent": true },
+    { "source": "/Topics/Self_Worth.html", "destination": "/topics/self-worth/", "permanent": true },
+    { "source": "/Topics/Self_control.html", "destination": "/topics/self-control/", "permanent": true },
+    { "source": "/Topics/Sexuality.html", "destination": "/topics/sexuality/", "permanent": true },
+    { "source": "/Topics/Wisdom.html", "destination": "/topics/wisdom/", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}

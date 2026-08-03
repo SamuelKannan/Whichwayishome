@@ -28,7 +28,7 @@ src/
 public/
   Topics/*.html      Redirect stubs so old /Topics/<Name>.html URLs still work
   robots.txt, favicon.svg, og-default.jpg
-amplify.yml          AWS Amplify build settings
+vercel.json          Legacy-URL 301 redirects (see Deploying section)
 ```
 
 ### Adding a new topic
@@ -38,25 +38,16 @@ amplify.yml          AWS Amplify build settings
    add it to `gridTopics` to show it on the homepage grid.
 3. Create `src/pages/topics/<slug>.astro` wrapping `<TopicLayout slug="<slug>">` around the content.
 
-## Deploying on AWS Amplify
+## Deploying on Vercel
 
-The repo includes `amplify.yml`, so the existing GitHub → Amplify pipeline keeps
-working. After merging this branch into the production branch, verify once in the
-Amplify console (App settings → Build settings) that the build spec is being read
-from the repo and that **Node 20+** is used.
+Vercel auto-detects the Astro build (`npm run build` → `dist/`); no extra config
+needed there.
 
-Old URLs (`/Topics/God.html` etc.) are handled by static redirect stub pages.
-For proper 301 redirects (slightly better for SEO), you can optionally add
-rewrites in the Amplify console (App settings → Rewrites and redirects), e.g.:
-
-```json
-[
-  { "source": "/Topics/God.html", "target": "/topics/god/", "status": "301" },
-  { "source": "/Topics/Heaven_part2.html", "target": "/topics/invitation/", "status": "301" }
-]
-```
-
-(Pattern: `/Topics/<Old_Name>.html` → `/topics/<kebab-slug>/`; `Heaven_part2` → `invitation`.)
+Old URLs (`/Topics/God.html` etc.) are additionally handled by static redirect
+stub pages (meta-refresh) in `public/Topics/`, kept as a fallback. The real,
+crawler-honored 301s live in `vercel.json` (`redirects`), so no console setup is
+required — they deploy with the repo. (`Patience.html` targets the homepage since
+the Patience topic page was retired — it had no content and no internal links.)
 
 ## SEO
 

@@ -28,7 +28,6 @@ import humility from '../assets/topics/humility.png';
 import kindness from '../assets/topics/kindness.png';
 import heaven from '../assets/topics/heaven.png';
 import hell from '../assets/topics/hell.jpg';
-import patience from '../assets/topics/patience.png';
 
 export interface Topic {
   slug: string;
@@ -240,12 +239,6 @@ export const extraTopics: Topic[] = [
     description:
       'Everyone who calls on the name of the Lord will be saved. Your invitation to eternal life — and how to RSVP.',
     image: heaven,
-  },
-  {
-    slug: 'patience',
-    title: 'Patience',
-    description: 'What does the Bible say about patience?',
-    image: patience,
   },
 ];
 
