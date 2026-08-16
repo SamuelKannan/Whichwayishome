@@ -34,6 +34,10 @@ import TopicLayout from '../../layouts/TopicLayout.astro';
       By this we know love, that he laid down his life for us, and we ought to lay down our lives for the
       brothers. - 1 John 3:16
     </li>
+    <li class="love-quote">
+      "The happiness of love is an action; it's test is what one is willing to do for others." -
+      <em>Ben-Hur</em>
+    </li>
   </ul>
 
   <div class="video-card">
@@ -56,3 +60,17 @@ import TopicLayout from '../../layouts/TopicLayout.astro';
     by permission. All rights reserved worldwide.
   </p>
 </TopicLayout>
+
+<style is:global>
+  .topic-prose ul li.love-quote {
+    background: linear-gradient(135deg, #b9d5b9 0%, #a3caa5 100%);
+    border-color: #8dbd91;
+    border-left-color: #8dbd91;
+    color: #263b2b;
+    text-align: center;
+  }
+
+  .topic-prose ul li.love-quote em {
+    color: #263b2b;
+  }
+</style>
