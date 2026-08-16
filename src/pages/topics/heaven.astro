@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import TopicLayout from "../../layouts/TopicLayout.astro";
+import firstForemost from "../../assets/topics/First_formost.jpg";
 ---
 
 <TopicLayout slug="heaven">
@@ -43,22 +45,23 @@ import TopicLayout from "../../layouts/TopicLayout.astro";
     </p>
   </div>
 
-  <h2>First and Foremost</h2>
-  <p>
-    " Whom have I in heaven but you?..." - Psalms 73:25 <br />
-    <br />
-    If God wasn't in heaven, would you want to be there? Be honest! If we saw clearly
-    heaven would have nothing for us without our Lord. He is the One who completes
-    us and fulfills us. <br />
-    Without Jesus, Heaven would only be a lovely place without the Lover. And what,
-    I ask you, is a honeymoon without the groom?
-    <br />This is how it should be for us. What does heaven have for us if it
-    does not have Him?
-    <br />
-    Consider this John Piper quote: "People who would be happy in heaven if Christ
-    were not there, will not be there. The gospel is not a way to get people to heaven;
-    it is way to people to God."
-  </p>
+  <section class="heaven-subtopics" aria-label="Heaven topics">
+    <div class="heaven-subtopic-grid">
+      <a href="/topics/heaven/first-and-foremost/" class="heaven-subtopic-card heaven-subtopic-card-featured" data-astro-prefetch>
+        <Image src={firstForemost} alt="First and Foremost" class="heaven-subtopic-image" widths={[400, 700]} sizes="(max-width: 700px) 92vw, 33vw" />
+        <span class="heaven-subtopic-number">01</span>
+        <h3>First and Foremost</h3>
+      </a>
+      <a href="/topics/heaven/imagine/" class="heaven-subtopic-card" data-astro-prefetch>
+        <span class="heaven-subtopic-number">02</span>
+        <h3>I can only imagine....so imagine</h3>
+      </a>
+      <a href="/topics/heaven/kingdom/" class="heaven-subtopic-card" data-astro-prefetch>
+        <span class="heaven-subtopic-number">03</span>
+        <h3>Heaven, A world, A country, A Kingdom, A city prepared</h3>
+      </a>
+    </div>
+  </section>
 
   <p class="scripture-credit">
     Scripture taken from the Holy Bible, NEW INTERNATIONAL VERSION&reg;,
@@ -66,3 +69,89 @@ import TopicLayout from "../../layouts/TopicLayout.astro";
     by permission. All rights reserved worldwide.
   </p>
 </TopicLayout>
+
+<style>
+  .heaven-subtopics {
+    margin: 2.5rem 0;
+  }
+
+  .heaven-subtopic-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .heaven-subtopic-card {
+    display: flex;
+    position: relative;
+    aspect-ratio: 1;
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--gold);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .heaven-subtopic-card-featured {
+    overflow: hidden;
+    border-color: transparent;
+  }
+
+  .heaven-subtopic-card-featured::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(0 0 0 / 0.16), rgb(0 0 0 / 0.68));
+    content: '';
+  }
+
+  .heaven-subtopic-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .heaven-subtopic-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .heaven-subtopic-number {
+    position: relative;
+    z-index: 1;
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .heaven-subtopic-card h3 {
+    position: relative;
+    z-index: 1;
+    margin: 0.7rem 0 0;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    line-height: 1.2;
+  }
+
+  .heaven-subtopic-card-featured .heaven-subtopic-number,
+  .heaven-subtopic-card-featured h3 {
+    color: white;
+  }
+
+  @media (max-width: 700px) {
+    .heaven-subtopic-grid {
+      grid-template-columns: 1fr;
+    }
+
+  }
+</style>

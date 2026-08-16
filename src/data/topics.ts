@@ -228,6 +228,24 @@ export const extraTopics: Topic[] = [
     image: heaven,
   },
   {
+    slug: 'heaven/first-and-foremost',
+    title: 'First and Foremost',
+    description: 'Heaven is first and foremost about being with God.',
+    image: heaven,
+  },
+  {
+    slug: 'heaven/imagine',
+    title: 'I can only imagine....so imagine',
+    description: 'A Heaven topic inviting us to imagine what is to come.',
+    image: heaven,
+  },
+  {
+    slug: 'heaven/kingdom',
+    title: 'Heaven, A world, A country, A Kingdom, A city prepared',
+    description: 'A Heaven topic about the world, country, kingdom, and city God has prepared.',
+    image: heaven,
+  },
+  {
     slug: 'hell',
     title: 'Hell',
     description: 'What does the Bible say about hell? The eternal agony of damnation — and the escape God offers.',

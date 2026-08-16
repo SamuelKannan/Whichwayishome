@@ -30,6 +30,10 @@ import TopicLayout from '../../layouts/TopicLayout.astro';
       Jesus said - ' “I have told you these things, so that in me you may have peace. In this world you will
       have trouble. But take heart! I have overcome the world.”' - John 16:33
     </li>
+    <li class="peace-quote">
+      "The seeming peace a sinner has is not from the knowledge of his happiness but the ignorance of his
+      danger." - D.L. Moody
+    </li>
     <li>
       'You will keep in perfect peace those whose minds are steadfast, because they trust in you. ' - Isaiah 26:3
     </li>
@@ -78,3 +82,21 @@ import TopicLayout from '../../layouts/TopicLayout.astro';
     by permission. All rights reserved worldwide.
   </p>
 </TopicLayout>
+
+<style is:global>
+  .topic-prose ul li.peace-quote {
+    background: #4e7d91;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: #fffdf8;
+  }
+
+  .topic-prose ul li.peace-quote:hover {
+    transform: none;
+  }
+
+  .topic-prose ul li.peace-quote::after {
+    display: none;
+  }
+</style>
