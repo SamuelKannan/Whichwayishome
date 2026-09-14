@@ -1,0 +1,17 @@
+0 verbose cli /Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node /Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@11.19.0
+2 info using node@v24.20.0
+3 silly config load:file:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/anna/Documents/Website/Whichwayishome/.npmrc
+5 silly config load:file:/Applications/ChatGPT.app/Contents/Resources/cua_node/etc/npmrc
+6 verbose title npm run dev
+7 verbose argv "run" "dev"
+8 verbose logfile logs-max:10 dir:/Users/anna/Documents/Website/Whichwayishome/.npm/_logs/2026-09-14T18_47_05_377Z-
+9 verbose logfile /Users/anna/Documents/Website/Whichwayishome/.npm/_logs/2026-09-14T18_47_05_377Z-debug-0.log
+10 silly logfile done cleaning log files
+11 verbose cwd /Users/anna/Documents/Website/Whichwayishome
+12 verbose os Darwin 25.6.0
+13 verbose node v24.20.0
+14 verbose npm  v11.19.0
+15 verbose exit 1
+16 verbose code 1
