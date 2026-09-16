@@ -2,18 +2,19 @@
 import { Image } from "astro:assets";
 import TopicLayout from "../../layouts/TopicLayout.astro";
 import firstForemost from "../../assets/topics/First_formost.jpg";
-import goldenGates from "../../assets/topics/Heaven_golden_gates.png";
+import goldenGates from "../../assets/topics/heaven-gates-02.png";
+import heavenParade from "../../assets/topics/heaven-parade.png";
 ---
 
 <TopicLayout slug="heaven">
-  <p class="bubble">
+  <p class="bubble heaven-scripture-box">
     <b
       >"There is a river whose streams make glad the city of God, the holy place
       where the Most High dwells." - Psalms 46:4</b
     >
   </p>
 
-  <p class="warning-box">
+  <p class="warning-box heaven-warning-box">
     <span class="warning-icon">⚠️</span>
     <span class="warning-text">
       <b>
@@ -30,7 +31,7 @@ import goldenGates from "../../assets/topics/Heaven_golden_gates.png";
     <span class="warning-icon">⚠️</span>
   </p>
 
-  <div class="bubble2">
+  <div class="bubble2 heaven-reading-box">
     <p><b>Heaven:</b></p>
     <p>
       A Christian's eternal home with Christ. To a Christian who truly knows
@@ -58,7 +59,8 @@ import goldenGates from "../../assets/topics/Heaven_golden_gates.png";
         <span class="heaven-subtopic-number">02</span>
         <h3>Heaven: A world, A country, A Kingdom, A city prepared</h3>
       </a>
-      <a href="/topics/heaven/imagine/" class="heaven-subtopic-card" data-astro-prefetch>
+      <a href="/topics/heaven/imagine/" class="heaven-subtopic-card heaven-subtopic-card-featured" data-astro-prefetch>
+        <Image src={heavenParade} alt="Heavenly parade" class="heaven-subtopic-image heaven-subtopic-image-parade" widths={[400, 700]} sizes="(max-width: 700px) 92vw, 33vw" />
         <span class="heaven-subtopic-number">03</span>
         <h3>I can only imagine....so imagine</h3>
       </a>
@@ -101,6 +103,28 @@ import goldenGates from "../../assets/topics/Heaven_golden_gates.png";
     text-align: center;
   }
 
+  .heaven-subtopic-card-bubble {
+    background: #e7eef9;
+    border: 1px solid #ccdcf2;
+    border-top: 1px solid #ccdcf2;
+  }
+
+  :global(.topic-prose .warning-box.heaven-warning-box) {
+    background: #fbfbfb;
+    border-color: #eeeeee;
+  }
+
+  :global(.topic-prose .bubble.heaven-scripture-box) {
+    margin-top: -1.7rem;
+    background: #e4f6ff;
+    border-color: #bee3f6;
+  }
+
+  :global(.topic-prose .bubble2.heaven-reading-box) {
+    background: #e4f6ff;
+    border-color: #bee3f6;
+  }
+
   .heaven-subtopic-card-featured {
     overflow: hidden;
     border-color: transparent;
@@ -127,6 +151,10 @@ import goldenGates from "../../assets/topics/Heaven_golden_gates.png";
     height: calc(100% - 0.7rem);
     object-fit: cover;
     object-position: center 24%;
+  }
+
+  .heaven-subtopic-image-parade {
+    object-position: center 62%;
   }
 
   .heaven-subtopic-card:hover {
@@ -156,6 +184,11 @@ import goldenGates from "../../assets/topics/Heaven_golden_gates.png";
   .heaven-subtopic-card-featured .heaven-subtopic-number,
   .heaven-subtopic-card-featured h3 {
     color: white;
+  }
+
+  .heaven-subtopic-card-bubble .heaven-subtopic-number,
+  .heaven-subtopic-card-bubble h3 {
+    color: var(--ink);
   }
 
   @media (max-width: 700px) {
