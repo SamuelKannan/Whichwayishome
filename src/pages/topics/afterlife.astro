@@ -43,19 +43,18 @@ import hell from '../../assets/topics/hell.jpg';
   </li>
   </ul>
   "Life is real! Life is earnest! And the grave is not its goal; Dust thou art, to dust returneth, Was not spoken of the soul." - Henry Wadsworth Longfellow
-  <br>
-  <br>
-                 Excerpt from "Leaving Buddha"
-  <br>
-  <br>
-  "Tashi Lama wanted to hear me scream for mercy. He wanted to hear me beg for my life and deny the teachings of Jesus, but unlike him, I had hope in death.
-  <br>Death was no longer part of a meaningless cycle or reincarnation. Death had meaning because life in Jesus had meaning. 
-  <br>The mob of monks did not intimidate me because I knew that death was not the end it was only the beginning." - Tenzin Lahkpa
-  <br>
-  <br>
-  Meditation: And so it is with every Christian. Death is not the end it is only the beginnging and it is a beginning filled with hope. 
-  <br>If you desire this hope for your After Life you will find it in the person of Jesus Christ. He is always ready to answer you, ask Him.
-  <br>
+  <section class="excerpt-bubble" aria-label="Excerpt from Leaving Buddha">
+    <p class="excerpt-title">Excerpt from "Leaving Buddha"</p>
+    <p>
+      "Tashi Lama wanted to hear me scream for mercy. He wanted to hear me beg for my life and deny the teachings of Jesus, but unlike him, I had hope in death.
+      <br />Death was no longer part of a meaningless cycle or reincarnation. Death had meaning because life in Jesus had meaning.
+      <br />The mob of monks did not intimidate me because I knew that death was not the end it was only the beginning." - Tenzin Lahkpa
+    </p>
+    <p>
+      Meditation: And so it is with every Christian. Death is not the end it is only the beginnging and it is a beginning filled with hope.
+      <br />If you desire this hope for your After Life you will find it in the person of Jesus Christ. He is always ready to answer you, ask Him.
+    </p>
+  </section>
   <ul>
 <li>
   "Since the children have flesh and blood, he too shared in their humanity so that by his death he might break the power of him who holds the power of death—that is, the devil— and free those who all their lives were held in slavery by their fear of death." - Hebrews 2:14-15
@@ -108,6 +107,29 @@ import hell from '../../assets/topics/hell.jpg';
     font-size: 1.3rem;
     font-weight: 600;
     color: var(--ink);
+  }
+
+  .excerpt-title {
+    text-align: center;
+    margin: 0 0 1rem;
+    font-weight: 700;
+  }
+
+  .excerpt-bubble {
+    margin: 1.5rem 0;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    background: #fffef7;
+    border: 1px solid #f5f0cf;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .excerpt-bubble p {
+    margin: 0;
+  }
+
+  .excerpt-bubble p + p {
+    margin-top: 1rem;
   }
 
   @media (max-width: 520px) {

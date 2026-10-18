@@ -252,6 +252,24 @@ export const extraTopics: Topic[] = [
     image: hell,
   },
   {
+    slug: 'hell/god-the-judge',
+    title: 'God the Judge',
+    description: 'Scripture about God’s judgment on an unrepentant and unbelieving heart.',
+    image: hell,
+  },
+  {
+    slug: 'hell/description',
+    title: 'Hell’s Description',
+    description: 'Scripture describing hell and its eternal punishment.',
+    image: hell,
+  },
+  {
+    slug: 'hell/do-you-qualify',
+    title: 'Do You Qualify for Hell?',
+    description: 'A warning about refusing the truth and the deceitfulness of wickedness.',
+    image: hell,
+  },
+  {
     slug: 'invitation',
     title: 'Invitation',
     description:
