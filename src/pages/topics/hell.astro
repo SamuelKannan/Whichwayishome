@@ -3,38 +3,35 @@ import TopicLayout from "../../layouts/TopicLayout.astro";
 ---
 
 <TopicLayout slug="hell">
-  <p class="lede hell-opening-title">
-    <b>"A picture is worth a thousand words"</b>
-  </p>
-  <p class="hell-opening-copy">
-    And yet the one above still manages to fall short of the gravity of the
-    eternal agony of damnation.
-  </p>
+  <section class="hell-opening-callout" aria-label="Opening reflection">
+    <p class="lede hell-opening-title">
+      <b>"A picture is worth a thousand words"</b>
+    </p>
+    <p class="hell-opening-copy">
+      And yet the one above still manages to fall short of the gravity of the
+      eternal agony of damnation.
+    </p>
+  </section>
 
   <ul>
-    <li class="hell-bubble">
-      <p>
+    <li>
         <b>John 3:16</b><br />
         &ldquo;For God so loved the world that he gave his one and only Son, that
         whoever believes in him shall not perish but have eternal life.&rdquo;
-      </p>
-
-      <p>
+      <br>
+      <br>
         This verse speaks of love and hope for humanity, but it also reveals the
         reason for the dire need of love and hope for humanity.
-      </p>
-      <p>
+      <br>
         The verse implies that whoever does not believe in Jesus Christ, the Son
         of God, will perish and have eternal death.
-      </p>
       <p class="interlude">
         The implication is true.<br />
         The reality horrifying.
       </p>
-      <p>
+      <br>
         This horrifying reality, this &ldquo;living&rdquo; eternal death is
         infamously known as Hell.
-      </p>
     </li>
   </ul>
 
@@ -104,11 +101,28 @@ import TopicLayout from "../../layouts/TopicLayout.astro";
 
 <style>
   .hell-opening-title {
-    margin-top: -1.25rem;
+    margin: 0;
+    white-space: nowrap;
   }
 
   .hell-opening-copy {
-    margin-bottom: 3.25rem;
+    margin: 0;
+    color: rgb(255 246 231 / 0.92);
+  }
+
+  .hell-opening-callout {
+    margin: -1.25rem 0 3.25rem;
+    padding: 1.35rem 1.5rem;
+    border-radius: var(--radius);
+    background: #962d1d;
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+  }
+
+  .hell-opening-callout .hell-opening-title,
+  .hell-opening-callout .hell-opening-title b {
+    color: #fff6e7;
+    font-size: clamp(0.95rem, 4.5vw, 1.5rem);
   }
 
   .hell-subtopics {
