@@ -1,11 +1,13 @@
 ---
 import TopicLayout from '../../../layouts/TopicLayout.astro';
+import goldenGates from '../../../assets/topics/heaven-gates-02.png';
 ---
 
-<TopicLayout slug="heaven/kingdom" noImage>
-  <p class="lede"><b>Heaven: A World, A Country, A Kingdom, A City Prepared</b></p>
-  <br>"If I find in myself a desire which no experience in this world can satisfy, the most probable explanation is that I was made for another world". - CS Lewis
-  <br>
+<TopicLayout slug="heaven/kingdom" noImage heroBackground={goldenGates}>
+  <blockquote class="kingdom-opening-quote">
+    <p>“If I find in myself a desire which no experience in this world can satisfy, the most probable explanation is that I was made for another world.”</p>
+    <footer>— C. S. Lewis</footer>
+  </blockquote>
   <ul>
   <li>
     Revelation Chapter 21 & 22:1-5
@@ -23,3 +25,31 @@ I did not see a temple in the city, because the Lord God Almighty and the Lamb a
   <br>
   <p>More details for this Heaven topic are coming soon.</p>
 </TopicLayout>
+
+<style>
+  .kingdom-opening-quote {
+    margin: 0 0 1.6rem;
+    padding: 1.25rem 1.4rem;
+    background: linear-gradient(135deg, #e8cd7d, #c99535);
+    border: 1px solid #b98228;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    color: #39260e;
+    text-align: center;
+  }
+
+  .kingdom-opening-quote p {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .kingdom-opening-quote footer {
+    margin-top: 0.7rem;
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 700;
+  }
+</style>

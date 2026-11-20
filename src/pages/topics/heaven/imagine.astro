@@ -1,10 +1,11 @@
 ---
 import TopicLayout from '../../../layouts/TopicLayout.astro';
+import heavenParade from '../../../assets/topics/heaven-parade.png';
 ---
 
-<TopicLayout slug="heaven/imagine" noImage>
+<TopicLayout slug="heaven/imagine" noImage heroBackground={heavenParade}>
 
-  <p>
+  <p class="imagine-intro">
     We do not need to pursue the beauties of this world, nor the seven wonders, nor the thrill of the exotic, nor the most glorious vaction destinations. We need not waste our time and money. We will see the best. We will experience the best. For God has reserved the best for us in the new heavens and the new Earth of Eternity.
   </p>
 
@@ -31,4 +32,12 @@ import TopicLayout from '../../../layouts/TopicLayout.astro';
     </li>
   </ul>
 </TopicLayout>
+
+<style>
+  .imagine-intro {
+    background: #e6f2df;
+    padding: 1.25rem 1.4rem;
+    border-radius: var(--radius);
+  }
+</style>
 

@@ -1,5 +1,5 @@
 ---
-import { Image, getImage } from 'astro:assets';
+import { Image, getImage, type ImageMetadata } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
 import { getTopic, getNeighbours } from '../data/topics';
 
@@ -9,9 +9,11 @@ interface Props {
   noImage?: boolean;
   /** Hide the standard questions call-to-action. */
   noCta?: boolean;
+  /** Optional image displayed behind the topic title. */
+  heroBackground?: ImageMetadata;
 }
 
-const { slug, noImage = false, noCta = false } = Astro.props;
+const { slug, noImage = false, noCta = false, heroBackground } = Astro.props;
 const topic = getTopic(slug);
 const { prev, next } = getNeighbours(slug);
 
@@ -58,7 +60,10 @@ const schema = {
   schema={schema}
 >
   <main>
-    <section class="topic-hero">
+    <section
+      class:list={{ 'topic-hero': true, 'topic-hero-with-background': Boolean(heroBackground) }}
+      style={heroBackground ? `--topic-hero-image: url(${heroBackground.src})` : undefined}
+    >
       <p class="eyebrow reveal">A step towards Home</p>
       <h1 class="reveal" style="--reveal-delay: 0.08s">
         {topic.title}
@@ -171,6 +176,20 @@ const schema = {
   .topic-hero h1 {
     font-size: clamp(2.6rem, 7vw, 4rem);
     margin-top: 0.5rem;
+  }
+
+  .topic-hero-with-background {
+    background:
+      linear-gradient(180deg, rgb(18 31 22 / 0.32), rgb(18 31 22 / 0.68)),
+      var(--topic-hero-image) center 62% / cover no-repeat;
+    min-height: 20rem;
+    display: grid;
+    align-content: center;
+  }
+
+  .topic-hero-with-background h1,
+  .topic-hero-with-background .eyebrow {
+    color: white;
   }
 
   .topic-figure {

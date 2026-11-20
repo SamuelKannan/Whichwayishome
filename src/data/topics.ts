@@ -241,7 +241,7 @@ export const extraTopics: Topic[] = [
   },
   {
     slug: 'heaven/kingdom',
-    title: 'Heaven, A world, A country, A Kingdom, A city prepared',
+    title: 'Heaven: A world, A country, A Kingdom, A city prepared',
     description: 'A Heaven topic about the world, country, kingdom, and city God has prepared.',
     image: heaven,
   },
