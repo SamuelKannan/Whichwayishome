@@ -145,6 +145,11 @@ import heavenParade from "../../assets/topics/heaven-parade.png";
     object-fit: cover;
   }
 
+  /* Lift the featured image's light and local contrast so it stays crisp beneath the card overlay. */
+  .heaven-subtopic-card:first-child .heaven-subtopic-image {
+    filter: brightness(1.2) contrast(1.14) saturate(1.05);
+  }
+
   .heaven-subtopic-image-fill {
     inset: 0.35rem;
     width: calc(100% - 0.7rem);
