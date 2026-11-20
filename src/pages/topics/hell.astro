@@ -14,7 +14,11 @@ import TopicLayout from "../../layouts/TopicLayout.astro";
   </section>
 
   <ul>
-    <li>
+    <li class="hell-bubble">
+      <span class="hell-alarm hell-alarm-top-left" aria-hidden="true">⚠</span>
+      <span class="hell-alarm hell-alarm-top-right" aria-hidden="true">⚠</span>
+      <span class="hell-alarm hell-alarm-bottom-left" aria-hidden="true">⚠</span>
+      <span class="hell-alarm hell-alarm-bottom-right" aria-hidden="true">⚠</span>
         <b>John 3:16</b><br />
         &ldquo;For God so loved the world that he gave his one and only Son, that
         whoever believes in him shall not perish but have eternal life.&rdquo;
@@ -108,13 +112,16 @@ import TopicLayout from "../../layouts/TopicLayout.astro";
   .hell-opening-copy {
     margin: 0;
     color: rgb(255 246 231 / 0.92);
+    font-size: clamp(1.05rem, 3.5vw, 1.25rem);
+    font-weight: 600;
+    line-height: 1.55;
   }
 
   .hell-opening-callout {
     margin: -1.25rem 0 3.25rem;
     padding: 1.35rem 1.5rem;
     border-radius: var(--radius);
-    background: #962d1d;
+    background: #ad3a24;
     box-shadow: var(--shadow-sm);
     text-align: center;
   }
@@ -122,11 +129,44 @@ import TopicLayout from "../../layouts/TopicLayout.astro";
   .hell-opening-callout .hell-opening-title,
   .hell-opening-callout .hell-opening-title b {
     color: #fff6e7;
-    font-size: clamp(0.95rem, 4.5vw, 1.5rem);
+    font-size: clamp(1.1rem, 5vw, 2rem);
+    font-weight: 750;
+    line-height: 1.25;
   }
 
   .hell-subtopics {
     margin: 2.5rem 0;
+  }
+
+  .topic-prose ul li.hell-bubble {
+    border: 1px solid #d98c68;
+    border-left: 3px solid #d9542b;
+    border-radius: 0;
+  }
+
+  .hell-alarm {
+    position: absolute;
+    z-index: 1;
+    color: #e45b2e;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 0 0 5px rgb(222 65 25 / 0.6);
+    animation: hell-alarm-flash 1.1s steps(2, end) infinite;
+  }
+
+  .hell-alarm-top-left { top: 0.38rem; left: 0.42rem; }
+  .hell-alarm-top-right { top: 0.38rem; right: 0.42rem; animation-delay: 0.2s; }
+  .hell-alarm-bottom-left { bottom: 0.38rem; left: 0.42rem; animation-delay: 0.35s; }
+  .hell-alarm-bottom-right { right: 0.42rem; bottom: 0.38rem; animation-delay: 0.5s; }
+
+  @keyframes hell-alarm-flash {
+    50% { color: #ff9b45; opacity: 0.35; text-shadow: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hell-alarm { animation: none; }
   }
 
   .hell-subtopic-grid {
